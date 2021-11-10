@@ -1,7 +1,7 @@
 <template>
     <video 
       ref="videoPlayer" 
-      controls id="video-player" 
+      controls
       class="video-js" 
       :options="options"
     >
