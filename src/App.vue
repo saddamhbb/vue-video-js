@@ -31,7 +31,7 @@ export default {
   mounted() {
     this.player = videojs(this.$refs.videoPlayer, this.options, function onPlayerReady() {
       const videoPlayer = this;
-      let currentTime = 5;
+      let currentTime = 0;
 
       videoPlayer.on("seeking", function() {
         if (currentTime < videoPlayer.currentTime()) {
@@ -44,6 +44,12 @@ export default {
           videoPlayer.currentTime(currentTime);
         }
       });
+
+      videoPlayer.setInterval(() => {
+        if (!videoPlayer.paused()) {
+          currentTime = videoPlayer.currentTime()
+        }
+      }, 1000);
     })
   },
   beforeDestroy() {
